@@ -42,6 +42,9 @@ import {
   RiskFeedPanel,
   SystemTelemetryPanel,
 } from "./components/CommandPanels.jsx";
+
+import Analysis from "./pages/analysis.jsx";
+import Report from "./pages/report.jsx";
  
 const health = [
   { label: "AI Core", value: "Synced", icon: BrainCircuit, tone: "text-[var(--success)]" },
@@ -53,38 +56,27 @@ const navigationSections = [
   {
     label: "Main Navigation",
     items: [
-      { label: "Command Center", path: "/command-center", icon: Home },
-      { label: "AI Traffic Copilot", path: "/traffic-copilot", icon: Bot },
+      { label: "Analysis Monitor", path: "/analysis", icon: Home },
+      { label: "Resource Command", path: "/traffic-copilot", icon: Bot },
+      { label: "Report", path: "/report", icon: FileText },
       { label: "Diversion Planner", path: "/diversion-planner", icon: Route },
-      { label: "Resource Command", path: "/resource-command", icon: Truck },
-      { label: "Event Simulator", path: "/event-simulator", icon: RadioTower },
+      { label: "Event Simulator", path: "/resource-command", icon: Truck }
     ],
   },
   {
     label: "Operations",
     items: [
-      { label: "Live Traffic", path: "/live-traffic", icon: TrafficCone },
-      { label: "Incident Management", path: "/incident-management", icon: Siren },
-      { label: "Emergency Routing", path: "/emergency-routing", icon: Ambulance },
-      { label: "Dispatch Center", path: "/dispatch-center", icon: Radio },
+      { label: "Report", path: "/traffic-copilot", icon: Bot },
+      { label: "Event Simulator", path: "/resource-command", icon: Truck },
+      { label: "Diversion Planner", path: "/diversion-planner", icon: Route }
     ],
   },
   {
     label: "Analytics",
     items: [
-      { label: "Traffic Analytics", path: "/traffic-analytics", icon: TrendingUp },
-      { label: "Reports", path: "/reports", icon: FileText },
-      { label: "Predictions", path: "/predictions", icon: BarChart3 },
+      { label: "Analysis Monitor", path: "/command-center", icon: Home }
     ],
-  },
-  {
-    label: "System",
-    items: [
-      { label: "Settings", path: "/settings", icon: Settings },
-      { label: "User Management", path: "/user-management", icon: Users },
-      { label: "Audit Logs", path: "/audit-logs", icon: ClipboardList },
-    ],
-  },
+  }
 ];
  
 const routeTitles = navigationSections
@@ -162,7 +154,9 @@ function AppShell({ theme, toggleTheme }) {
  
           <section className="mx-auto w-full max-w-[1800px] p-4 lg:p-6">
             <Routes>
-              <RouterRoute path="/" element={<Navigate to="/command-center" replace />} />
+              <RouterRoute path="/report" element={<Report />} />
+              <RouterRoute path="/analysis" element={<Analysis />} />
+              <RouterRoute path="/" element={<Navigate to="/analysis" replace />} />
               <RouterRoute path="/command-center" element={<CommandCenterPage />} />
               <RouterRoute path="/traffic-copilot" element={<CopilotPage />} />
               <RouterRoute path="/diversion-planner" element={<DiversionPage />} />
@@ -277,7 +271,7 @@ function TopHeader({ currentTitle, now, theme, toggleTheme, openDrawer }) {
           </button>
           <div>
             <h1 className="text-xl font-bold tracking-tight text-[var(--text)]">{currentTitle}</h1>
-            <p className="text-sm text-[var(--muted)]">Delhi NCR Smart City Traffic Operations</p>
+            <p className="text-sm text-[var(--muted)]">Bangalore Event Scratcher</p>
           </div>
         </div>
  
